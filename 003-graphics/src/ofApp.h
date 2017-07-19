@@ -12,11 +12,8 @@ class ofApp : public ofBaseApp{
 		void draw();
         void mouseMoved(int x, int y );
 
-        ofImage image;
-		ofTrueTypeFont 	fontLoader;
-        string helloWorld;
-        string fontName;
-
         vector<ofVec2f > points;
+        vector<ofVec2f > sizes;
+        vector<ofVec3f > colors;
 };
 

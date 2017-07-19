@@ -48,9 +48,21 @@ void ofApp::draw(){
             // ofRotateY(deg);
             // ofRotateZ(deg);
             // ofScale(ofRandom(1), ofRandom(1));
-            image.draw(points[i].x - 25, points[i].y - 25, 50,50);
+            // image.draw(points[i].x - 25, points[i].y - 25, 50,50);
         // ofPopMatrix();
     }
+
+    ofBackground(255);
+    ofPushMatrix();
+        // Original rectangle in blue
+        ofSetColor(0, 0, 255);
+        ofDrawRectangle(500, 200, 200, 200);
+
+        // Rotated rectangle in red
+        ofRotate(45);
+        ofSetColor(255, 0, 0);
+        ofDrawRectangle(500, 200, 200, 200);
+    ofPopMatrix();
 
 }
 

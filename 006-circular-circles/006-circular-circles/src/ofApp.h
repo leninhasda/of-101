@@ -23,5 +23,8 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		ofxPanel gui;
+		ofParameter<float> spiralSpin;
+		ofParameter<int> circleCountLine;
+		//ofParameter<int> circleCountCircle;
 		
 };

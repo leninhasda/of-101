@@ -29,6 +29,7 @@ class ofApp : public ofBaseApp{
 
 		ofxPanel gui;
 
-		void maybeDrawLine(int x, int y);
+		void maybeDrawLine(ofPoint point);
+		ofPoint hex_corner(ofPoint center, int size, int i);
 		
 };

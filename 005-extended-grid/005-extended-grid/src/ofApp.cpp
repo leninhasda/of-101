@@ -36,14 +36,10 @@ void ofApp::draw(){
 	int fullSize = halfSize * 2;
 
 	ofPoint start, end;
-	int X, Y, cnt=0;
+	int cnt=0;
 	int xI, yI;
 
 	ofPoint xy(ofGetMouseX(), ofGetMouseY());
-	cout << xy.x << " " << xy.y << endl;
-	cout << typeid(xy.x).name() << '\n';
-	//cnt = xy.x;
-	printf("%d %f\n", cnt, xy.x);
 	int height = r * 2;
 	int width = sqrt(3) / 2 * height;
 	int hsp = height * 3 / 4;
@@ -64,54 +60,33 @@ void ofApp::draw(){
 				
 				ofSetColor(ofColor::blue);
 				ofDrawCircle(hexDot, int(circleRadius));
-				ofSetColor(230);
+				//ofSetColor(230);
 				//ofDrawLine(ofPoint(xI, yI), hexDot);
 				
 				//ofDrawCircle(ofPoint(xI, yI), int(circleRadius));
-
 				maybeDrawLine(hexDot);
 			}
 		}
 	}
 
-	/*int block = gridSize / 8;
-
-	int xSize = block * 7;
-	int xHalf = xSize / 2;
-
-	int yStep1 = block * 2;
-	int yStep2 = block * 4;
-
-	int xCounter, yCounter;
-
-	for (yCounter = 1, Y = 0; Y < winH; yCounter++) {
-		
-		X = (yCounter % 3 < 3) ? 0 : xHalf;
-		Y += (yCounter % 2 == 0) ? yStep1 : yStep2;
-
-		while(X < winW) {
-
-			ofSetColor(200);
-			ofDrawCircle(ofPoint(X, Y), int(circleRadius));
-			X += xSize;
-
-			maybeDrawLine(X, Y);
-
-		}
-	}
-	*/
 	gui.draw();
 }
 
 void ofApp::maybeDrawLine(ofPoint point) {
 	int sqrdDist = ofDistSquared(ofGetMouseX(), ofGetMouseY(), point.x, point.y);
-	
+	ofColor lineColor = ofColor::red;
 
 	if (sqrdDist <= int(lineDist*lineDist)) {
-		int color = 150;
-		cout << sqrdDist << " <------> " << lineDist << endl;
+		// range scaling
+		// from 0~lineDist^2
+		int a = 0, b = lineDist * lineDist; 
+		// to 5 ~ 150
+		int y = 1, z = 255;
+		int opacity = z - ( (z-y) * (sqrdDist - a)) / (b-a) + y;
+		lineColor.a = opacity; // a = alpha
+		
 
-		ofSetColor(color);
+		ofSetColor(lineColor);
 		ofDrawLine(point, ofPoint(ofGetMouseX(), ofGetMouseY()));
 	}
 }

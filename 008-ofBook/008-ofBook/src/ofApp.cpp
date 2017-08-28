@@ -40,7 +40,7 @@ void ofApp::draw(){
 			ofDrawRectangle(ofGetMouseX() + xOffset, ofGetMouseY() + yOffset, width, height);
 		}*/
 
-		int maxRadius = 100;  // Increase for a wider brush
+		/*int maxRadius = 100;  // Increase for a wider brush
 		int radiusStepSize = 10;  // Decrease for more circles (i.e. a more opaque brush)
 		int alpha = 3;  // Increase for a more opaque brush
 		int maxOffsetDistance = 100;  // Increase for a larger spread of circles
@@ -58,6 +58,19 @@ void ofApp::draw(){
 
 			//ofSetColor(255, alpha);
 			ofDrawCircle(ofGetMouseX() + xOffset, ofGetMouseY() + yOffset, radius);
+		}*/
+
+		int numLines = 30;
+		int minRadius = 25;
+		int maxRadius = 125;
+		for (int i = 0; i<numLines; i++) {
+			float angle = ofRandom(ofDegToRad(360.0));
+			float distance = ofRandom(minRadius, maxRadius);
+			float xOffset = cos(angle) * distance;
+			float yOffset = sin(angle) * distance;
+			float alpha = ofMap(distance, minRadius, maxRadius, 50, 0);  // Make shorter lines more opaque
+			ofSetColor(255, alpha);
+			ofDrawLine(ofGetMouseX(), ofGetMouseY(), ofGetMouseX() + xOffset, ofGetMouseY() + yOffset);
 		}
 	}
 	else if (ofGetMousePressed(OF_MOUSE_BUTTON_RIGHT)) {  // If the right mouse button is pressed...

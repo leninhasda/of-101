@@ -4,6 +4,9 @@
 void ofApp::setup(){
 	//soundExample = SoundExample();
 	//soundExample.setup();
+
+	ofSetBackgroundAuto(false); // now the draw will work like processing
+	// cool :D
 }
 
 //--------------------------------------------------------------
@@ -15,15 +18,14 @@ void ofApp::update(){
 void ofApp::draw(){
 	//soundExample.draw();
 
-	ofBackground(0);  // Clear the screen with a black color
-	ofSetColor(255);  // Set the drawing color to white
+	ofSetBackgroundColor(255);
 
-					  // Draw some shapes
-	ofDrawRectangle(50, 50, 100, 100); // Top left corner at (50, 50), 100 wide x 100 high
-	ofDrawCircle(250, 100, 50); // Centered at (250, 100), radius of 50
-	ofDrawEllipse(400, 100, 80, 100); // Centered at (400 100), 80 wide x 100 high
-	ofDrawTriangle(500, 150, 550, 50, 600, 150); // Three corners: (500, 150), (550, 50), (600, 150)
-	ofDrawLine(700, 50, 700, 150); // Line from (700, 5
+	if (ofGetMousePressed(OF_MOUSE_BUTTON_LEFT)) {  // If the left mouse button is pressed...
+		float randomColor = ofRandom(50, 255);
+		ofSetColor(randomColor);
+		ofSetRectMode(OF_RECTMODE_CENTER);
+		ofDrawRectangle(ofGetMouseX(), ofGetMouseY(), 50, 50);  // Draw a 50 x 50 rect centered over the mouse
+	}
 }
 
 //--------------------------------------------------------------

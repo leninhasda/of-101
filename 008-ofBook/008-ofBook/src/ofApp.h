@@ -23,5 +23,5 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
 
-		SoundExample soundExample;
+		//SoundExample soundExample;
 };

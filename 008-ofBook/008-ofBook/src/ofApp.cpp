@@ -26,6 +26,11 @@ void ofApp::draw(){
 		ofSetRectMode(OF_RECTMODE_CENTER);
 		ofDrawRectangle(ofGetMouseX(), ofGetMouseY(), 50, 50);  // Draw a 50 x 50 rect centered over the mouse
 	}
+	else if (ofGetMousePressed(OF_MOUSE_BUTTON_RIGHT)) {  // If the right mouse button is pressed...
+		ofSetColor(255);
+		ofSetRectMode(OF_RECTMODE_CENTER);
+		ofDrawRectangle(ofGetMouseX(), ofGetMouseY(), 50, 50);  // Draw a 50 x 50 rect centered over the mouse
+	}
 }
 
 //--------------------------------------------------------------

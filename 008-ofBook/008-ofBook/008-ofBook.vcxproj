@@ -187,6 +187,7 @@ D:\OF\of_v0.9.8_vs_release\addons\ofxGui\src;%(AdditionalIncludeDirectories)</Ad
     <ClCompile Include="..\..\..\..\OF\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\..\OF\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\..\OF\of_v0.9.8_vs_release\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="src\BrushExample.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\SoundExample.cpp" />
@@ -201,6 +202,7 @@ D:\OF\of_v0.9.8_vs_release\addons\ofxGui\src;%(AdditionalIncludeDirectories)</Ad
     <ClInclude Include="..\..\..\..\OF\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\..\OF\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\..\OF\of_v0.9.8_vs_release\addons\ofxGui\src\ofxToggle.h" />
+    <ClInclude Include="src\BrushExample.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\SoundExample.h" />
   </ItemGroup>

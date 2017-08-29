@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "SoundExample.h"
+#include "BrushExample.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,4 +25,5 @@ class ofApp : public ofBaseApp{
 		
 
 		//SoundExample soundExample;
+		BrushExample brushExample;
 };

@@ -117,7 +117,13 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 's') {
+		// It's strange that we can compare the int key to a character like `s`, right?  Well, the super short
+		// explanation is that characters are represented by numbers in programming.  `s` and 115 are the same
+		// thing.  If you want to know more, check out the wiki for ASCII.
+		glReadBuffer(GL_FRONT);  // HACK: only needed on windows, when using ofSetAutoBackground(false)
+		ofSaveScreen("savedScreenshot_" + ofGetTimestampString() + ".png");
+	}
 }
 
 //--------------------------------------------------------------

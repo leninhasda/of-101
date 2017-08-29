@@ -60,7 +60,7 @@ void ofApp::draw(){
 			ofDrawCircle(ofGetMouseX() + xOffset, ofGetMouseY() + yOffset, radius);
 		}*/
 
-		int numLines = 30;
+		/*int numLines = 30;
 		int minRadius = 25;
 		int maxRadius = 125;
 		for (int i = 0; i<numLines; i++) {
@@ -71,6 +71,41 @@ void ofApp::draw(){
 			float alpha = ofMap(distance, minRadius, maxRadius, 50, 0);  // Make shorter lines more opaque
 			ofSetColor(255, alpha);
 			ofDrawLine(ofGetMouseX(), ofGetMouseY(), ofGetMouseX() + xOffset, ofGetMouseY() + yOffset);
+		}*/
+
+		int numTriangles = 10;
+		int minOffset = 5;
+		int maxOffset = 70;
+		int alpha = 150;
+
+		for (int t = 0; t<numTriangles; ++t) {
+			float offsetDistance = ofRandom(minOffset, maxOffset);
+
+			ofVec2f mousePos(ofGetMouseX(), ofGetMouseY());
+
+			// Define a triangle at the origin (0,0) that points to the right
+			ofVec2f p1(0, 6.25);
+			ofVec2f p2(25, 0);
+			ofVec2f p3(0, -6.25);
+
+			float rotation = ofRandom(360); // The rotate function uses degrees!
+			p1.rotate(rotation);
+			p2.rotate(rotation);
+			p3.rotate(rotation);
+
+			ofVec2f triangleOffset(offsetDistance, 0.0);
+			triangleOffset.rotate(rotation);
+
+			p1 += mousePos + triangleOffset;
+			p2 += mousePos + triangleOffset;
+			p3 += mousePos + triangleOffset;
+
+			ofColor aqua(0, 252, 255, alpha);
+			ofColor purple(198, 0, 205, alpha);
+			ofColor inbetween = aqua.getLerped(purple, ofRandom(1.0));
+			ofSetColor(inbetween);
+
+			ofDrawTriangle(p1, p2, p3);
 		}
 	}
 	else if (ofGetMousePressed(OF_MOUSE_BUTTON_RIGHT)) {  // If the right mouse button is pressed...

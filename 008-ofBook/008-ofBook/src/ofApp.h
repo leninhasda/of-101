@@ -25,5 +25,9 @@ class ofApp : public ofBaseApp{
 		
 
 		//SoundExample soundExample;
-		BrushExample brushExample;
+		//BrushExample brushExample;
+
+		ofPolyline straightSegmentPolyline;
+		ofPolyline curvedSegmentPolyline;
+		ofPolyline closedShapePolyline;
 };

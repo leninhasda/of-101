@@ -30,4 +30,5 @@ class ofApp : public ofBaseApp{
 		ofPolyline straightSegmentPolyline;
 		ofPolyline curvedSegmentPolyline;
 		ofPolyline closedShapePolyline;
+		ofPolyline arcShapePolyline;
 };

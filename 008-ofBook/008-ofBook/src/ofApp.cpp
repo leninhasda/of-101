@@ -27,6 +27,28 @@ void ofApp::setup(){
 	closedShapePolyline.addVertex(800, 125);
 	closedShapePolyline.addVertex(700, 150);
 	closedShapePolyline.close();  // Connect first and last vertices
+
+
+	arcShapePolyline.arc(
+		ofPoint(300, 300),
+		50, 50,
+		0, 90,
+		100
+	);
+	arcShapePolyline.arc(
+		ofPoint(300, 350),
+		50, 50,
+		-90, 90,
+		false,
+		100
+	);
+	arcShapePolyline.arc(
+		ofPoint(300, 400),
+		50, 50,
+		-90, 0,
+		100
+	);
+
 }
 
 //--------------------------------------------------------------
@@ -46,6 +68,17 @@ void ofApp::draw(){
 	straightSegmentPolyline.draw();  // This is how we draw polylines
 	curvedSegmentPolyline.draw();  // Nice and easy, right?
 	closedShapePolyline.draw();
+
+	
+	ofPushMatrix();
+		ofTranslate(arcShapePolyline.getCentroid2D());
+	ofPoint xy = arcShapePolyline.getCentroid2D();
+	cout << xy.x << " " << xy.y << endl;
+		ofRotate(30);
+		ofPushMatrix();
+		arcShapePolyline.draw();
+		ofPopMatrix();
+	ofPopMatrix();
 }
 
 //--------------------------------------------------------------

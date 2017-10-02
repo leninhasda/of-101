@@ -2,6 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
+	gui.setup();
+	gui.add(r.set("Red", 255, 0, 255));
+	gui.add(g.set("Green", 255, 0, 255));
+	gui.add(b.set("Blue", 255, 0, 255));
+
 	minDistance = 10;
 	leftMouseButtonPressed = false;
 }
@@ -20,15 +26,18 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackground(0);
-	ofSetColor(255);
 
 	for (int i = 0; i < polylines.size(); i++) {
 		ofPolyline polyline = polylines[i];
+
+		ofSetColor(colors[i]);
 		polyline.draw();
 	}
 
 	ofSetColor(255, 100, 0);
 	currentPolyline.draw();
+
+	gui.draw();
 }
 
 //--------------------------------------------------------------
@@ -43,14 +52,20 @@ void ofApp::keyReleased(int key){
 		size = polylines.size();
 		if (size > 0) {
 			undos.push(polylines.at(size - 1));
+			undoColors.push(colors.at(size - 1));
+
 			polylines.pop_back();
+			colors.pop_back();
 		}
 	}
 	if (key == 'r') {
 		size = undos.size();
 		if (size > 0) {
 			polylines.push_back(undos.top());
+			colors.push_back(undoColors.top());
+
 			undos.pop();
+			undoColors.pop();
 		}
 	}
 }
@@ -80,6 +95,7 @@ void ofApp::mouseReleased(int x, int y, int button){
 	if (button == OF_MOUSE_BUTTON_LEFT) {
 		leftMouseButtonPressed = false;
 		currentPolyline.curveTo(x, y);
+		colors.push_back(ofColor(r, g, b));
 		polylines.push_back(currentPolyline);
 		currentPolyline.clear();
 	}

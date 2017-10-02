@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -26,7 +27,14 @@ class ofApp : public ofBaseApp{
 		ofVec2f lastPoint;
 		float minDistance;
 
+		ofxPanel gui;
+		ofParameter<int> r;
+		ofParameter<int> g;
+		ofParameter<int> b;
+
+		vector <ofColor> colors;
 		vector <ofPolyline> polylines;
+		stack <ofColor> undoColors;
 		stack <ofPolyline> undos;
 		
 };

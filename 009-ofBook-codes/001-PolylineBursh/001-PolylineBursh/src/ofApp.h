@@ -25,6 +25,8 @@ class ofApp : public ofBaseApp{
 		bool leftMouseButtonPressed;
 		ofVec2f lastPoint;
 		float minDistance;
+
 		vector <ofPolyline> polylines;
+		stack <ofPolyline> undos;
 		
 };

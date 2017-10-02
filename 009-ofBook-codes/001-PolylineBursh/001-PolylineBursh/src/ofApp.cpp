@@ -38,7 +38,21 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	int size;
+	if (key == 'u') {
+		size = polylines.size();
+		if (size > 0) {
+			undos.push(polylines.at(size - 1));
+			polylines.pop_back();
+		}
+	}
+	if (key == 'r') {
+		size = undos.size();
+		if (size > 0) {
+			polylines.push_back(undos.top());
+			undos.pop();
+		}
+	}
 }
 
 //--------------------------------------------------------------

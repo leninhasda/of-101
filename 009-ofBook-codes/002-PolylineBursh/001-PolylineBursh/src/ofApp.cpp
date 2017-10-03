@@ -33,11 +33,23 @@ void ofApp::draw(){
 		ofSetColor(colors[i]);
 		polyline.draw();
 
-		vector <ofVec3f> vertices = polyline.getVertices();
+		/*vector <ofVec3f> vertices = polyline.getVertices();
 		for (int vertexIndex = 0; vertexIndex < vertices.size(); vertexIndex++) {
 			ofVec3f vertex = vertices[vertexIndex];
 			ofDrawCircle(vertex, 5);
+		}*/
+		/*for (int p = 0; p<100; p += 10) {
+			ofVec3f point = polyline.getPointAtPercent(p / 100.0);  // Returns a point at a percentage along the polyline
+			ofDrawCircle(point, 5);
+		}*/
+		vector <ofVec3f> vertices = polyline.getVertices();
+		float normalLength = 50;
+		for (int vertexIndex = 0; vertexIndex < vertices.size(); vertexIndex++) {
+			ofVec3f vertex = vertices[vertexIndex];
+			ofVec3f normal = polyline.getNormalAtIndex(vertexIndex) * normalLength;
+			ofDrawLine(vertex-normal/2, vertex+normal/2);
 		}
+
 	}
 
 	ofSetColor(255, 100, 0);
@@ -102,6 +114,7 @@ void ofApp::mouseReleased(int x, int y, int button){
 		leftMouseButtonPressed = false;
 		currentPolyline.curveTo(x, y);
 		colors.push_back(ofColor(r, g, b));
+		currentPolyline.simplify(.9);
 		polylines.push_back(currentPolyline);
 		currentPolyline.clear();
 	}

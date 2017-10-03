@@ -60,8 +60,6 @@ void ofApp::draw(){
 			ofDrawLine(point - normal / 2, point + normal / 2);
 		}
 
-		
-
 	}
 
 	ofSetColor(255, 100, 0);

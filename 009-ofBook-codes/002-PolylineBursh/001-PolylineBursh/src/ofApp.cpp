@@ -51,16 +51,22 @@ void ofApp::draw(){
 			ofDrawLine(vertex-normal/2, vertex+normal/2);
 		}*/
 
-		float normalLength = 50;
+		/*float normalLength = 50;
 		for (int p = 0; p<500; p += 1) {
 			ofVec3f point = polyline.getPointAtPercent(p / 500.0);
 			float floatIndex = polyline.getIndexAtPercent(p / 500.0);
 			ofVec3f normal = polyline.getNormalAtIndexInterpolated(floatIndex) * normalLength;
 			ofSetColor(255, 100);
 			ofDrawLine(point - normal / 2, point + normal / 2);
-		}
+		}*/
 
-		
+		vector<ofVec3f> vertices = polyline.getVertices();
+		float tangentLength = 80;
+		for (int vertexIndex = 0; vertexIndex<vertices.size(); vertexIndex++) {
+			ofVec3f vertex = vertices[vertexIndex];
+			ofVec3f tangent = polyline.getTangentAtIndex(vertexIndex) * tangentLength;
+			ofDrawLine(vertex - tangent / 2, vertex + tangent / 2);
+		}
 
 	}
 

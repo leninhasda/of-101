@@ -10,6 +10,8 @@ void ofApp::setup(){
 
 	minDistance = 10;
 	leftMouseButtonPressed = false;
+
+	isSavingPDF = false;
 }
 
 //--------------------------------------------------------------
@@ -25,6 +27,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	if (isSavingPDF) {
+		ofBeginSaveScreenAsPDF("savedScreenshot_" + ofGetTimestampString() + ".pdf");
+	}
+
 	ofBackground(0);
 
 	for (int i = 0; i < polylines.size(); i++) {
@@ -60,12 +66,21 @@ void ofApp::draw(){
 			ofDrawLine(point - normal / 2, point + normal / 2);
 		}*/
 
-		vector<ofVec3f> vertices = polyline.getVertices();
+		/*vector<ofVec3f> vertices = polyline.getVertices();
 		float tangentLength = 80;
 		for (int vertexIndex = 0; vertexIndex<vertices.size(); vertexIndex++) {
 			ofVec3f vertex = vertices[vertexIndex];
 			ofVec3f tangent = polyline.getTangentAtIndex(vertexIndex) * tangentLength;
 			ofDrawLine(vertex - tangent / 2, vertex + tangent / 2);
+		}*/
+
+		ofSetColor(colors[i], 50);
+		float tangentLength = 300;
+		for (int p = 0; p<500; p += 1) {
+			ofVec3f point = polyline.getPointAtPercent(p / 500.0);
+			float floatIndex = polyline.getIndexAtPercent(p / 500.0);
+			ofVec3f tangent = polyline.getTangentAtIndexInterpolated(floatIndex) * tangentLength;
+			ofDrawLine(point - tangent / 2, point + tangent / 2);
 		}
 
 	}
@@ -74,11 +89,19 @@ void ofApp::draw(){
 	currentPolyline.draw();
 
 	gui.draw();
+
+	if (isSavingPDF) {
+		ofEndSaveScreenAsPDF();
+		isSavingPDF = false;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 's') {
+		// isSavingPDF is a flag that lets us know whether or not save a PDF
+		isSavingPDF = true;
+	}
 }
 
 //--------------------------------------------------------------

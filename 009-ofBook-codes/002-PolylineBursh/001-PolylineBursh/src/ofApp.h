@@ -36,5 +36,7 @@ class ofApp : public ofBaseApp{
 		vector <ofPolyline> polylines;
 		stack <ofColor> undoColors;
 		stack <ofPolyline> undos;
+
+		bool isSavingPDF;
 		
 };

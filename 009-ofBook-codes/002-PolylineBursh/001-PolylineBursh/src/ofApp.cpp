@@ -102,6 +102,11 @@ void ofApp::keyPressed(int key){
 		// isSavingPDF is a flag that lets us know whether or not save a PDF
 		isSavingPDF = true;
 	}
+	if (key == 'p') {
+		img.grabScreen(0, 0,
+			ofGetWidth(), ofGetHeight()
+		);
+	}
 }
 
 //--------------------------------------------------------------
@@ -126,6 +131,10 @@ void ofApp::keyReleased(int key){
 			undos.pop();
 			undoColors.pop();
 		}
+	}
+
+	if (key == 'p') {
+		img.save("savedScreenshot_" + ofGetTimestampString() + ".png", OF_IMAGE_QUALITY_BEST);
 	}
 }
 

@@ -38,5 +38,6 @@ class ofApp : public ofBaseApp{
 		stack <ofPolyline> undos;
 
 		bool isSavingPDF;
+		ofImage img;
 		
 };

@@ -16,17 +16,26 @@ void ofApp::update(){
 void ofApp::draw(){
 	//ofBackground(255);
 	
-	int r = ofRandom(255),
-		g = ofRandom(255),
-		b = ofRandom(255);
-	ofSetColor(255, clearAlpha);
+	ofColor darkColor(0, 0, 0, 255);
+	ofColor lightColor(255, 255, 255, 255);
+	float time = ofGetElapsedTimef();
+	float percent = ofMap(cos(time / 2.0), -1, 1, 0, 1);
+
+	ofColor bgColor = darkColor;
+	bgColor.lerp(lightColor, percent);
+	bgColor.a = clearAlpha;
+
+	ofColor fgColor = lightColor;
+	fgColor.lerp(darkColor, percent);
+
+	ofSetColor(bgColor);
 	ofSetRectMode(OF_RECTMODE_CORNER);
 	ofFill();
 	// bg doesn't work on trasparent so draw a bg 
 	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
 
 	ofSetRectMode(OF_RECTMODE_CENTER);
-	ofSetColor(0);
+	ofSetColor(lightColor);
 	//ofSetColor(ofColor(150, g, b));
 	ofNoFill();
 	ofPushMatrix();

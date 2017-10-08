@@ -14,18 +14,17 @@ void ofApp::update(){
 void ofApp::draw(){
 	ofSetRectMode(OF_RECTMODE_CENTER);
 	ofBackground(255);
+
+	ofSetColor(0);
+	ofNoFill();	
 	ofPushMatrix();
-		// Original rectangle in blue
-		
-		ofSetColor(0, 0, 255);
-		ofDrawRectangle(500, 200, 200, 200);
+		ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
 
-		// Rotated rectangle in red
-		ofTranslate(500, 200);
-		//ofRotate(45);
-
-		ofSetColor(255, 0, 0);
-		ofDrawRectangle(0, 0, 200, 200);
+		for (int i = 0; i < 100; i++) {	
+			ofScale(1.1,1.1);
+			ofRotate(5);
+			ofDrawRectangle(0, 0, 50,50);
+		}
 	ofPopMatrix();
 }
 

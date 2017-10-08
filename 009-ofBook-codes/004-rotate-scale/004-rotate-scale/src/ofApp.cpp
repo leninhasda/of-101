@@ -2,7 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+	ofSetBackgroundAuto(false);
+	ofEnableAlphaBlending(); // telling of to use transparency
+	//ofBackground(255);
 }
 
 //--------------------------------------------------------------
@@ -12,17 +14,30 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofSetRectMode(OF_RECTMODE_CENTER);
-	ofBackground(255);
+	//ofBackground(255);
+	
+	int r = ofRandom(255),
+		g = ofRandom(255),
+		b = ofRandom(255);
+	ofSetColor(255, clearAlpha);
+	ofSetRectMode(OF_RECTMODE_CORNER);
+	ofFill();
+	// bg doesn't work on trasparent so draw a bg 
+	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
 
+	ofSetRectMode(OF_RECTMODE_CENTER);
 	ofSetColor(0);
-	ofNoFill();	
+	//ofSetColor(ofColor(150, g, b));
+	ofNoFill();
 	ofPushMatrix();
 		ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
 
 		for (int i = 0; i < 100; i++) {	
 			ofScale(1.1,1.1);
-			ofRotate(5);
+			//ofRotate(5);
+			float time = ofGetElapsedTimef();
+			float noise = ofSignedNoise(time * timeScale) * 20.0;
+			ofRotate(noise);
 			ofDrawRectangle(0, 0, 50,50);
 		}
 	ofPopMatrix();
@@ -40,7 +55,8 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+	clearAlpha = ofMap(x, 0, ofGetWidth(), 0, 255);
+	timeScale = ofMap(y, 0, ofGetHeight(), 0, 1);
 }
 
 //--------------------------------------------------------------
